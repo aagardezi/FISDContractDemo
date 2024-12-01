@@ -25,6 +25,8 @@ def get_project_id():
     print(f"Error: Could not determine the project ID. {e}")
     return None
 
+#TODO: Get the right dataset id and table id for your bq instance 
+# and set it as an env variable when creating the function
 PROJECT_ID = get_project_id()
 DATASET_ID = os.environ.get("DATASET_ID")
 TABLE_ID = os.environ.get("TABLE_ID")
@@ -56,6 +58,7 @@ def send_to_gemini_gcs(cloud_event):
     print(f"Updated: {updated}")
 
     vertexai.init(project=PROJECT_ID, location="us-central1")
+    #TODO: Look at the spec here and see how its ensuring json output. Do you need that?
     # model = GenerativeModel(
     #   "gemini-1.5-flash-001",generation_config={"response_mime_type": "application/json"}
     # )
